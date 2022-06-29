@@ -4,18 +4,40 @@ import { Home, Market, Portfolio, Profile } from "../screens";
 import React from "react";
 import { TabIcon } from "../components";
 import { TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { setTradeModelVisibilty } from "../stores/tab/tabActions";
 
 const Tab = createBottomTabNavigator();
 
-const Tabs = () => {
+const TabBarCustomButton = ({ children, onPress }) => {
+  return (
+    <TouchableOpacity
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      onPress={onPress}
+    >
+      {children}
+    </TouchableOpacity>
+  );
+};
+
+const Tabs = ({ setTradeModelVisibilty, isTradeModalVisible }) => {
+  function tradeTabButtonClickHandler() {
+    setTradeModelVisibilty(!isTradeModalVisible);
+    console.log('isTradeModalVisible',isTradeModalVisible)
+  }
+
   return (
     <Tab.Navigator
       tabBarOptions={{ showLabel: false }}
       screenOptions={{
         tabBarStyle: {
           height: 100,
-          backgroundColor: COLORS.black,
+          backgroundColor: COLORS.primary,
           borderTopColor: "transparent",
         },
       }}
@@ -25,7 +47,11 @@ const Tabs = () => {
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
-            return <TabIcon focused={focused} icon={icons.home} label="Home" />;
+            if (!isTradeModalVisible) {
+              return (
+                <TabIcon focused={focused} icon={icons.home} label="Home" />
+              );
+            }
           },
         }}
       />
@@ -60,6 +86,12 @@ const Tabs = () => {
               />
             );
           },
+          tabBarButton: (props) => (
+            <TabBarCustomButton
+              {...props}
+              onPress={() => tradeTabButtonClickHandler()}
+            />
+          ),
         }}
       />
 
@@ -90,4 +122,18 @@ const Tabs = () => {
   );
 };
 
-export default Tabs;
+function mapStateToProps(state) {
+  return {
+    isTradeModalVisible: state.tabReducer.isTradeModalVisible,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setTradeModelVisibilty: (isVisible) => {
+      return dispatch(setTradeModelVisibilty(isVisible));
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

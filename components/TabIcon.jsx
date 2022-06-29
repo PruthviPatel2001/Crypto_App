@@ -11,9 +11,9 @@ const TabIcon = ({ focused, icon, iconStyle, label, isTrade }) => {
         style={{
           alignItems: "center",
           justifyContent: "center",
-          width: 60,
-          height: 60,
-          borderRadius: 30,
+          width: 70,
+          height: 70,
+          borderRadius: 50,
           backgroundColor: COLORS.black,
         }}
       >
@@ -23,13 +23,13 @@ const TabIcon = ({ focused, icon, iconStyle, label, isTrade }) => {
           style={{
             width: 25,
             height: 25,
-            tintColor: focused ? COLORS.white : Colors.secondary,
+            tintColor:COLORS.white ,
             ...iconStyle,
           }}
         />
         <Text
           style={{
-            color: focused ? Colors.white : Colors.secondary,
+            color:  Colors.white ,
             ...FONTS.h4,
           }}
         >
