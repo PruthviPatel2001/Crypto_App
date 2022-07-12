@@ -98,7 +98,7 @@ const Tabs = ({ setTradeModelVisibilty, isTradeModalVisible }) => {
                 icon={isTradeModalVisible? icons.close : icons.trade}
                 iconStyle={isTradeModalVisible ? {
                   height: 15,
-                  with:15
+                  width:15
                 }:null}
                 label="Trade"
                 isTrade={true}

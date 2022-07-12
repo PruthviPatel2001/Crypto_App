@@ -29,7 +29,7 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
   // For Animation
   const modalY= modalAnimatedValue.interpolate({
     inputRange:[0,1],
-    outputRange:[SIZES.height,SIZES.height-360]
+    outputRange:[SIZES.height,SIZES.height-345]
   })
 
   return (
@@ -59,7 +59,7 @@ const MainLayout = ({ children, isTradeModalVisible }) => {
 
       <Animated.View
         style={{
-          position: "absplute",
+          position:"absolute",
           left: 0,
           top:modalY,
           width: "100%",
