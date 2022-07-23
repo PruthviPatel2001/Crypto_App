@@ -39,6 +39,7 @@ const Tabs = ({ setTradeModelVisibilty, isTradeModalVisible }) => {
           backgroundColor: COLORS.primary,
           borderTopColor: "transparent",
         },
+        headerShown: false
       }}
     >
       <Tab.Screen

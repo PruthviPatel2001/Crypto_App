@@ -54,7 +54,7 @@ export function getHoldings(
     })
       .then((response) => {
         // console.log('getHolding:',response.data);
-        if (response.state == 200) {
+        if (response.status == 200) {
           //massage data
           let myHoldings = response.data.map((item) => {
             //Retrive our current holdings -> quantity
@@ -103,7 +103,7 @@ export const getCoinMarketBegin = () => ({
   type: GET_COIN_MARKET_BEGIN,
 });
 
-export const getCoinMarkeySuccess = (myHoldings) => ({
+export const getCoinMarkeySuccess = (coins) => ({
   type: GET_COIN_MARKET_SUCCESS,
   payload: { coins },
 });
@@ -126,7 +126,6 @@ export function getCoinMarket(
     dispatch(getCoinMarketBegin());
 
     let apiUrl = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${page}&sparkline=${sparkline}&price_change_percentage=${priceChangePer}`;
-  
 
     return axios({
       url: apiUrl,
@@ -135,18 +134,17 @@ export function getCoinMarket(
         // or headers
         Accept: "application/json",
       },
-    }).then((response)=>{
-      console.log('coinMarket',response);
-      if(response.state == 200){
-        dispatch(getCoinMarkeySuccess(response.data))
-      }else{
-        dispatch(getCointMarketFailure(response.data))
-      }
-    }).catch((error)=>{
-      dispatch(getCointMarketFailure(error))
-
     })
-  
-  
+      .then((response) => {
+        // console.log("coinMarket", response);
+        if (response.status == 200) {
+          dispatch(getCoinMarkeySuccess(response.data));
+        } else {
+          dispatch(getCointMarketFailure(response.data));
+        }
+      })
+      .catch((error) => {
+        dispatch(getCointMarketFailure(error));
+      });
   };
 }

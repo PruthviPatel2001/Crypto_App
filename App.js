@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { AppRegistry, StyleSheet, Text, View } from "react-native";
 import { applyMiddleware, legacy_createStore as createStore } from "redux";
 
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,10 +17,10 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
+          initialRouteName={"MainLayout"}
           screenOptions={{
             headerShown: false,
           }}
-          initialRouteName={"MainLayout"}
         >
           <Stack.Screen name="MainLayout" component={Tabs} />
         </Stack.Navigator>
