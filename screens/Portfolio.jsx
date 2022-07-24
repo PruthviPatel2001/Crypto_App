@@ -198,7 +198,7 @@ const Portfolio = ({ getHoldings, myHoldings }) => {
                       lineHeight: 15,
                     }}
                   >
-                    {item.current_price.toLocaleString()}
+                    ${item.current_price.toLocaleString()}
                   </Text>
 
                   <View
