@@ -12,6 +12,7 @@ import { useFocusEffect } from "@react-navigation/native";
 const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
   const [SelectedCoin, setSelectedCoin] = useState(null);
 
+
   const handleSelectedCoin = (item) => {
     setSelectedCoin(item);
   };
@@ -78,6 +79,7 @@ const Home = ({ getHoldings, getCoinMarket, myHoldings, coins }) => {
       </View>
     );
   }
+
 
   return (
     <MainLayout>

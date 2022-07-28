@@ -1,35 +1,29 @@
 export const holdings = [
     {
         id: "bitcoin",
-        qty: 888
+        qty: 20
     },
     {
         id: "ethereum",
-        qty: 188
+        qty: 100
     },
     {
         id: "dogecoin",
-        qty: 88888
+        qty: 1000
     }
 ]
 
 export const profile = {
-    id: 8888888,
-    email: "byprogrammers@gmail.com",
+    id: 'IN4048',
+    email: "pruthvi@gmail.com",
 }
 
-export const settings = {
-    launchScreen: "Home",
-    currency: "USD",
-    appearance: "Dark",
-    language: "English",
-    faceId: true,
-}
+
 
 const dummyData = {
     holdings,
     profile,
-    settings,
+    
 };
 
 export default dummyData;

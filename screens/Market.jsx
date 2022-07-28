@@ -4,7 +4,6 @@ import {
   FONTS,
   SIZES,
   constants,
-  dummyData,
   icons,
 } from "../constants";
 import { HeaderBar, TextButton } from "../components";
@@ -15,16 +14,18 @@ import { LineChart } from "react-native-chart-kit";
 import { MainLayout } from "./";
 import { connect } from "react-redux";
 import { getCoinMarket } from "../stores/market/marketActions";
-import { measure } from "react-native-reanimated";
 import { useEffect } from "react";
-import { useFocusEffect } from "@react-navigation/native";
 
 const marketTabs = constants.marketTabs.map((marketTabs) => ({
   ...marketTabs,
   ref: React.createRef(),
 }));
 
+
+
 const TabIndicator = ({ MeasureLayout, scrollX }) => {
+
+
   const inputRange = marketTabs.map((_, i) => i * SIZES.width);
 
   const translateX = scrollX.inpterPolate({
@@ -51,30 +52,36 @@ const TabIndicator = ({ MeasureLayout, scrollX }) => {
   );
 };
 
-const Tabs = ({ onMarketTabPress,scrollX }) => {
+const Tabs = ({ scrollX,onMarketTabPress }) => {
   const [MeasureLayout, SetMeasureLayout] = useState([]);
 
   const containerRef = useRef();
 
   useEffect(() => {
     let ml = [];
-    marketTabs.forEach((marketTabs) => {
-      marketTabs?.ref?.current?.MeasureLayout(
-        containerRef.current,
-        (x, y, width, height) => {
-          ml.push({
-            x,
-            y,
-            width,
-            height,
-          });
-
-          if (ml.length === marketTabs.length) {
-            SetMeasureLayout(ml);
+    try { 
+      marketTabs.forEach(marketTab => {
+        console.log(" marketTab?.ref?.current?", marketTab);
+        marketTab?.ref?.current?.MeasureLayout(
+          containerRef.current,
+          (x, y, width, height) => {
+            ml.push({
+              x,
+              y,
+              width,
+              height,
+            });
+  
+            if (ml.length === marketTabs.length) {
+              SetMeasureLayout(ml);
+            }
           }
-        }
+        );
+      }
       );
-    });
+    } catch (error) {
+      console.log(error)
+    }
   }, [containerRef.current]);
 
   return (
@@ -97,7 +104,7 @@ const Tabs = ({ onMarketTabPress,scrollX }) => {
             style={{
               flex: 1,
             }}
-            onPress={()=>onMarketTabPress(index)}
+            onPress={()=>onMarketTabPress(i)}
           >
             <View
               ref={item.ref}
@@ -125,6 +132,9 @@ const Tabs = ({ onMarketTabPress,scrollX }) => {
 };
 
 const Market = ({ getCoinMarket, coins }) => {
+
+ 
+  
   const scrollX = useRef(new Animated.Value(0)).current;
   const marketTabScrollViewRef = useRef();
 
@@ -137,6 +147,8 @@ const Market = ({ getCoinMarket, coins }) => {
   useEffect(() => {
     getCoinMarket();
   }, []);
+
+ 
 
   const renderTabBar = () => {
     return (
@@ -352,6 +364,8 @@ const Market = ({ getCoinMarket, coins }) => {
       />
     );
   };
+
+ 
 
   return (
     <MainLayout>

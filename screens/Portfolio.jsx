@@ -7,6 +7,7 @@ import { MainLayout } from "./";
 import { connect } from "react-redux";
 import { getHoldings } from "../stores/market/marketActions";
 import { useFocusEffect } from "@react-navigation/native";
+import { useFonts } from 'expo-font';
 
 const Portfolio = ({ getHoldings, myHoldings }) => {
 
@@ -15,8 +16,7 @@ const Portfolio = ({ getHoldings, myHoldings }) => {
   const handleSelectedCoin = (item) => {
     setSelectedCoin(item);
   };
-
-
+  
   useFocusEffect(
     useCallback(() => {
       getHoldings((holdings = dummyData.holdings));
@@ -64,6 +64,7 @@ const Portfolio = ({ getHoldings, myHoldings }) => {
       </View>
     );
   }
+
 
   return (
     <MainLayout>
