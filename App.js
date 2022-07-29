@@ -36,7 +36,7 @@ export default function App() {
           }}
         >
           <Stack.Screen name="Welcome" component={Welcome}/>
-          <Stack.Screen name="MainLayout" component={Tabs} />
+          <Stack.Screen name="MainLayout" component={Tabs} options={{gestureEnabled:false}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -33,9 +33,9 @@ const Welcome = ({navigation}) => {
       <TouchableOpacity
         style={{
           backgroundColor: COLORS.btn,
-          borderRadius: SIZES.radius,
+          borderRadius: SIZES.radius+10,
           marginTop: SIZES.padding + 24,
-          padding:SIZES.padding - 11,
+          padding:SIZES.padding - 14,
           paddingRight: SIZES.padding + 14,
           paddingLeft: SIZES.padding + 14,
           flexDirection: "row",
