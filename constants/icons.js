@@ -9,6 +9,7 @@ const trade = require("../assets/icons/trade.png")
 const upArrow = require("../assets/icons/up-arrow.png")
 const verified = require("../assets/icons/verified.png")
 const withdraw = require("../assets/icons/withdraw.png")
+const logo = require('../assets/logo/logo.png')
 
 export default {
     briefcase,
@@ -22,4 +23,5 @@ export default {
     upArrow,
     verified,
     withdraw,
+    logo
 }

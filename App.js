@@ -4,6 +4,7 @@ import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { Provider } from "react-redux";
 import Tabs from "./navigation/Tabs";
+import { Welcome } from "./screens";
 import { createStackNavigator } from "@react-navigation/stack";
 import rootReducers from "./stores/rootReducers";
 import thunk from "redux-thunk";
@@ -29,11 +30,12 @@ export default function App() {
       {LogBox.ignoreAllLogs()}
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName={"MainLayout"}
+          initialRouteName={"Welcome"}
           screenOptions={{
             headerShown: false,
           }}
         >
+          <Stack.Screen name="Welcome" component={Welcome}/>
           <Stack.Screen name="MainLayout" component={Tabs} />
         </Stack.Navigator>
       </NavigationContainer>
